@@ -14,12 +14,23 @@ class AdminController extends Controller
             $userType = Auth::user()->usertype;
 
             if ($userType == 'user') {
-                return view('dashboard');
+                return view('home.index');
             } else if ($userType == 'admin') {
                 return view('admin.index');
             } else {
                 return redirect()->back();
             }
         }
+    }
+
+    public function home()
+    {
+        return view('home.index');
+    }
+
+    public function create_room()
+    {
+        return view('admin.create_room');
+
     }
 }

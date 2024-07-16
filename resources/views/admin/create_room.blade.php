@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
@@ -34,20 +35,20 @@
         <form action="{{ url('add_room') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div>
-                <div>
+                <div class="form-group">
                     <label for="">Room Title</label>
-                    <input type="text" name="title">
+                    <input class="form-control" type="text" name="title">
                 </div>
-                <div>
+                <div class="form-group"> 
                     <label for="description">description</label>
-                    <textarea name="description" id="" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
                 </div>
 
-                <div>
+                <div class="form-group">
                     <label for="">Price</label>
                     <input type="number" name="price">
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="Room Type"></label>
                     <select name="room_type" id="">
                         <option selected value="reqular">reqgular</option>
@@ -57,7 +58,7 @@
                     </select>
                 </div>
 
-                <div>
+                <div class="form-group">
                     <label for="wifi"></label>
                     <select name="wifi" id="">
                         <option selected value="yes">yes</option>
@@ -67,7 +68,7 @@
 
                 </div>
 
-                <div>
+                <div class="form-group">
                     <label for="">Upload image</label>
                     <input type="file" name="image">
                 </div>

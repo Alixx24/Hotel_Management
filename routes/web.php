@@ -33,5 +33,9 @@ Route::get('/home', [AdminController::class, 'index'])->name('home');
 Route::get('/create_room', [AdminController::class, 'create_room'])->name('room.create');
 Route::post('/add_room', [AdminController::class, 'add_room'])->name('room.store');
 Route::get('/view_room', [AdminController::class, 'view_room'])->name('room.view');
+Route::get('/delete_room/{id}', [AdminController::class, 'delete_room'])->name('room.delete');
+Route::get('/update_room/{id}', [AdminController::class, 'update_room'])->name('room.update');
+Route::post('/edit_room/{id}', [AdminController::class, 'edit_room'])->name('room.edit');
+
 
 // https://www.youtube.com/watch?v=1K-4KcTVGIs&list=PLm8sgxwSZofeShFFRAfENHymQoKemCGtR&index=3

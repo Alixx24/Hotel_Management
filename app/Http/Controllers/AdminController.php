@@ -58,4 +58,39 @@ class AdminController extends Controller
         $fetchRooms = Room::all();
         return view('admin.view_room', compact('fetchRooms'));
     }
+
+    public function delete_room($id)
+    {
+        $fetchRoom = Room::find($id);
+        $fetchRoom->delete();
+        return redirect()->back();
+    }
+
+    public function update_room($id)
+    {
+        $fetchRoom = Room::find($id);
+
+        return view('admin.update_room', compact('fetchRoom'));
+    }
+
+    public function edit_room(Request $request, $id)
+    {
+        $data = Room::find($id);
+        $data->room_title = $request->title;
+        $data->description = $request->description;
+        $data->price = $request->price;
+        $data->wifi = $request->wifi;
+        $data->room_type = $request->room_type;
+
+
+        $image = $request->image;
+        if ($image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('room', $imagename);
+            $data->image = $imagename;
+        }
+        $data->save();
+
+        return redirect()->back();
+    }
 }

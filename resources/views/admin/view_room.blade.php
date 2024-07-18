@@ -29,10 +29,13 @@
         <td>{{ $item->room_title }}</td>
         <td>{{ $item->price }}$</td>
         <td>{{ $item->room_type }}</td>
-        <td>Delete</td>
+        <td><a onclick="return confirm('Are you sure to delete this ')" href="{{ url('delete_room', $item->id) }}">Delete</a></td>
+        <td><a href="{{ url('update_room', $item->id) }}">َUpdate</a></td>
+
         <td>
           <img width="60" src="room/{{ $item->image }}" alt="">
         </td>
+        
       </tr>
       @endforeach
     </tbody>

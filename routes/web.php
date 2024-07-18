@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,12 @@ Route::get('/view_room', [AdminController::class, 'view_room'])->name('room.view
 Route::get('/delete_room/{id}', [AdminController::class, 'delete_room'])->name('room.delete');
 Route::get('/update_room/{id}', [AdminController::class, 'update_room'])->name('room.update');
 Route::post('/edit_room/{id}', [AdminController::class, 'edit_room'])->name('room.edit');
+
+//home
+Route::get('/rooms', [HomeController::class, 'index'])->name('room.home');
+
+Route::get('/room_datails{id}', [HomeController::class, 'room_details'])->name('room.home.details');
+Route::post('/add_booking', [HomeController::class, 'add_booking'])->name('room.home.add');
 
 
 // https://www.youtube.com/watch?v=1K-4KcTVGIs&list=PLm8sgxwSZofeShFFRAfENHymQoKemCGtR&index=3

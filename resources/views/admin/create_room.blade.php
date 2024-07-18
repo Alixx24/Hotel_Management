@@ -22,7 +22,7 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
                     <a href="{{ url('create_room') }}">Add Room</a>
-                    <a href="">Add Room</a>
+                    <a href="{{ url('view_room') }}">View Room</a>
                     <a href="">Add Room</a>
 
                     <h3>Add room</h3>

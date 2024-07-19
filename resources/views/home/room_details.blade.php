@@ -26,38 +26,47 @@
                     <a href="{{ url('view_room') }}">View Room</a>
                     <a href="">Add Room</a>
 
-                   
+
 
                 </div>
             </div>
         </div>
 
+        <h1>{{ $fetchRoom->room_title }}</h1>
+        price:<h1>{{ $fetchRoom->price }}</h1>
 
-        <form action="{{ url('add_booking') }}" method="post">
+        @if($errors)
+        @foreach ($errors->all() as $errors)
+        <li class="text-danger">
+            {{$errors}}
+        </li>
+        @endforeach
+        @endif
+        <form action="{{ url('add_booking', $fetchRoom->id) }}" method="post">
             @csrf
             <div>
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input class="form-control" type="text" name="name">
+                    <input class="form-control" type="text" name="name" @if(Auth::id()) value="{{ Auth::user()->name }}" @endif>
                 </div>
                 <div class="form-group">
                     <label for="email">email</label>
-                    <input type="email" class="form-control" name="email" id="email"></input>
+                    <input type="email" class="form-control" name="email" id="email" @if(Auth::id()) value="{{ Auth::user()->email }}" @endif></input>
                 </div>
 
                 <div class="form-group">
                     <label for="">Phone</label>
-                    <input type="number" name="phone">
+                    <input type="number" name="phone" @if(Auth::id()) value="{{ Auth::user()->phone }}" @endif>
                 </div>
 
                 <div>
                     <label for="">start date</label>
-                    <input type="date" name="startDate" id="startDate">
+                    <input type="date" name="start_date" id="start_date">
                 </div>
 
                 <div>
                     <label for="">end date</label>
-                    <input type="date" name="endDate" id="endDate">
+                    <input type="date" name="end_date" id="end_date">
                 </div>
 
 

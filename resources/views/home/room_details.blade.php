@@ -35,6 +35,16 @@
         <h1>{{ $fetchRoom->room_title }}</h1>
         price:<h1>{{ $fetchRoom->price }}</h1>
 
+        <div>
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                <button type="button" class="close" data-bs-dismiss="alert">X</button>
+                {{ session()->get('message') }}
+            </div>
+            @endif
+        </div>
+
+
         @if($errors)
         @foreach ($errors->all() as $errors)
         <li class="text-danger">
@@ -47,11 +57,13 @@
             <div>
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input class="form-control" type="text" name="name" @if(Auth::id()) value="{{ Auth::user()->name }}" @endif>
+                    <input class="form-control" type="text" name="name" @if(Auth::id()) value="{{ Auth::user()->name }}"
+                        @endif>
                 </div>
                 <div class="form-group">
                     <label for="email">email</label>
-                    <input type="email" class="form-control" name="email" id="email" @if(Auth::id()) value="{{ Auth::user()->email }}" @endif></input>
+                    <input type="email" class="form-control" name="email" id="email" @if(Auth::id())
+                        value="{{ Auth::user()->email }}" @endif></input>
                 </div>
 
                 <div class="form-group">

@@ -34,7 +34,7 @@ class HomeController extends Controller
         $data->end_date = $request->end_date;
         $data->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'room is added!');
 
     }
 }

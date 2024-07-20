@@ -4,37 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Room;
+use App\Repositories\HomeInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
+    private HomeInterface $repo;
+    public function __construct(HomeInterface $repo)
+    {
+        $this->repo = $repo;
+    }
+
+
     public function index()
     {
-        $fetchRoom = Room::all();
+        $fetchRoom = $this->repo->index();
         return view('home.index', compact('fetchRoom'));
     }
     public function room_details($id)
     {
-        $fetchRoom = Room::find($id);
+        $fetchRoom = $this->repo->room_details($id);
         return view('home.room_details', compact('fetchRoom'));
     }
 
     public function add_booking(Request $request, $id)
     {
-        $request->validate([
-            'start_date'=> 'required|date',
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'start_date' => 'required|date',
             'end_date' => 'date|after:start_date',
         ]);
-        $data = new Booking;
-        $data->room_id = $id;
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->phone = $request->phone;
-        $data->start_date = $request->start_date;
-        $data->end_date = $request->end_date;
-        $data->save();
+        $data = $this->repo->add_booking($data, $id);
 
         return redirect()->back()->with('message', 'room is added!');
-
     }
 }

@@ -60,7 +60,7 @@ class AdminController extends Controller
 
     public function view_room()
     {
-        $fetchRooms = Room::all();
+        $fetchRooms = $this->repo->view_room();
         return view('admin.view_room', compact('fetchRooms'));
     }
 

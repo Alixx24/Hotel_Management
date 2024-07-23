@@ -29,4 +29,9 @@ class AdminRepo implements AdminInterface
 
         $addRoom->save();
     }
+
+    public function view_room()
+    {
+       return Room::all();
+    }
 }

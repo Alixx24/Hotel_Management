@@ -55,7 +55,7 @@ class AdminController extends Controller
 
         $data = $this->repo->add_room($data);
 
-        return redirect()->back()->with('message', 'Room Created Succefully!');
+        return redirect()->back()->with('message', 'Room Created Successfully!');
     }
 
     public function view_room()
@@ -72,28 +72,14 @@ class AdminController extends Controller
 
     public function update_room($id)
     {
-        $fetchRoom = Room::find($id);
+        $fetchRoom = $this->repo->update_room($id);
         return view('admin.update_room', compact('fetchRoom'));
     }
 
     public function edit_room(Request $request, $id)
     {
-        $data = Room::find($id);
-        $data->room_title = $request->title;
-        $data->description = $request->description;
-        $data->price = $request->price;
-        $data->wifi = $request->wifi;
-        $data->room_type = $request->room_type;
-
-
-        $image = $request->image;
-        if ($image) {
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
-            $request->image->move('room', $imagename);
-            $data->image = $imagename;
-        }
-        $data->save();
-
-        return redirect()->back();
+        $data = $request->all();
+        $fetchRoom = $this->repo->edit_room($data,$id);
+        return redirect()->back()->with('message', 'Room Updated Successfully');
     }
 }

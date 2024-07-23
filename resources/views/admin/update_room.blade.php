@@ -31,7 +31,14 @@
                 </div>
             </div>
         </div>
-
+        <div>
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                <button type="button" class="close" data-bs-dismiss="alert">X</button>
+                {{ session()->get('message') }}
+            </div>
+            @endif
+        </div>
 
         <form action="{{ url('edit_room',$fetchRoom->id) }}" method="post" enctype="multipart/form-data">
             @csrf

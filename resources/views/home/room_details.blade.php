@@ -57,28 +57,28 @@
             <div>
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input class="form-control" type="text" name="name" @if(Auth::id()) value="{{ Auth::user()->name }}"
+                    <input class="form-control" type="text" name="name" required @if(Auth::id()) value="{{ Auth::user()->name }}"
                         @endif>
                 </div>
                 <div class="form-group">
                     <label for="email">email</label>
-                    <input type="email" class="form-control" name="email" id="email" @if(Auth::id())
+                    <input type="email" class="form-control" name="email" required id="email" @if(Auth::id())
                         value="{{ Auth::user()->email }}" @endif></input>
                 </div>
 
                 <div class="form-group">
                     <label for="">Phone</label>
-                    <input type="number" name="phone" @if(Auth::id()) value="{{ Auth::user()->phone }}" @endif>
+                    <input type="number" name="phone" required @if(Auth::id()) value="{{ Auth::user()->phone }}" @endif>
                 </div>
 
                 <div>
                     <label for="">start date</label>
-                    <input type="date" name="start_date" id="start_date">
+                    <input type="date" name="start_date" id="start_date" required>
                 </div>
 
                 <div>
                     <label for="">end date</label>
-                    <input type="date" name="end_date" id="end_date">
+                    <input type="date" name="end_date" id="end_date" required>
                 </div>
 
 

@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Repositories\AdminInterface;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    private AdminInterface $repo;
+    public function __construct(AdminInterface $repo)
+    {
+        $this->repo = $repo;
+    }
     public function index()
     {
         if (Auth::id()) {
@@ -26,7 +33,8 @@ class AdminController extends Controller
 
     public function home()
     {
-        return view('home.index');
+        $fetchRoom = $this->repo->home();
+        return view('home.index', compact('fetchRoom'));
     }
 
     public function create_room()
@@ -35,22 +43,19 @@ class AdminController extends Controller
     }
 
     public function add_room(Request $request)
-    {
-        $data = new Room();
-        $data->room_title = $request->title;
-        $data->description = $request->description;
-        $data->price = $request->price;
-        $data->room_type = $request->room_type;
+    {   
+        $data = $request->all();
 
-        $image = $request->image;
-        if ($image) {
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
-            $request->image->move('room', $imagename);
-            $data->image = $imagename;
-        }
-        $data->save();
+        $validation = Validator::make($data ,[
+            'title' => 'string',
+            'price' => 'number',
+            'description' => 'string',
+            'image' => 'image', 'mimes:jpeg,png,jpg,gif,svg'
+        ]);
 
-        return redirect()->back();
+        $data = $this->repo->add_room($data);
+
+        return redirect()->back()->with('message', 'Room Created Succefully!');
     }
 
     public function view_room()

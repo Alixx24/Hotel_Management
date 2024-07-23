@@ -32,6 +32,12 @@ class AdminRepo implements AdminInterface
 
     public function view_room()
     {
-       return Room::all();
+        return Room::all();
+    }
+
+    public function delete_room($id)
+    {
+        $fetchRoom = Room::find($id);
+        return  $fetchRoom->delete();
     }
 }

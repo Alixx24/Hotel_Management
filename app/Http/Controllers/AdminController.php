@@ -43,10 +43,10 @@ class AdminController extends Controller
     }
 
     public function add_room(Request $request)
-    {   
+    {
         $data = $request->all();
 
-        $validation = Validator::make($data ,[
+        $validation = Validator::make($data, [
             'title' => 'string',
             'price' => 'number',
             'description' => 'string',
@@ -66,15 +66,13 @@ class AdminController extends Controller
 
     public function delete_room($id)
     {
-        $fetchRoom = Room::find($id);
-        $fetchRoom->delete();
+        $fetchRoom = $this->repo->delete_room($id);
         return redirect()->back();
     }
 
     public function update_room($id)
     {
         $fetchRoom = Room::find($id);
-
         return view('admin.update_room', compact('fetchRoom'));
     }
 

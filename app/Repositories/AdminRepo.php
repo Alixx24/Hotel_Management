@@ -34,7 +34,8 @@ class AdminRepo implements AdminInterface
 
     public function edit_room(array $data, $id)
     {
-       
+       $room = Room::find($id);
+       $this->save_room($room, $data);
     }
 
     private function save_room(Room $room, array $data)

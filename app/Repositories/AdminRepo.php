@@ -13,21 +13,7 @@ class AdminRepo implements AdminInterface
 
     public function add_room(array $data)
     {
-
-        $addRoom = new Room();
-        $addRoom->room_title = $data['title'];
-        $addRoom->description = $data['description'];
-        $addRoom->price = $data['price'];
-        $addRoom->room_type = $data['room_type'];
-
-        $image = $data['image'];
-        if ($image) {
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
-            $data['image']->move('room', $imagename);
-            $addRoom->image = $imagename;
-        }
-
-        $addRoom->save();
+        $this->save_room(new Room(), $data);
     }
 
     public function view_room()
@@ -48,19 +34,23 @@ class AdminRepo implements AdminInterface
 
     public function edit_room(array $data, $id)
     {
-        $updateRoom = Room::find($id);
-        $updateRoom->room_title = $data['title'];
-        $updateRoom->description = $data['description'];
-        $updateRoom->price = $data['price'];
-        $updateRoom->wifi = $data['wifi'];
-        $updateRoom->room_type = $data['room_type'];
+       
+    }
 
-        $image = $data['image'];
-        if ($image) {
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
+    private function save_room(Room $room, array $data)
+    {
+        $room->room_title = $data['title'];
+        $room->description = $data['description'];
+        $room->price = $data['price'];
+        $room->wifi = $data['wifi'] ?? $room->wifi; // Assuming wifi is optional
+        $room->room_type = $data['room_type'];
+
+        if (!empty($data['image'])) {
+            $imagename = time() . '.' . $data['image']->getClientOriginalExtension();
             $data['image']->move('room', $imagename);
-            $updateRoom->image = $imagename;
+            $room->image = $imagename;
         }
-        $updateRoom->save();
+
+        $room->save();
     }
 }

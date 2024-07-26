@@ -56,8 +56,10 @@
                     <label for="">Price</label>
                     <input type="number" name="price">
                 </div>
+                <p> امکانات رفاهی و تفریحی هتل</p>
+
                 <div class="form-group">
-                    <label for="Room Type"></label>
+                    <label for="Room Type">Room Type</label>
                     <select name="room_type" id="">
                         <option selected value="reqular">reqgular</option>
                         <option value="premium">premium</option>
@@ -67,8 +69,48 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="wifi"></label>
+                    <label for="wifi">Wifi</label>
                     <select name="wifi" id="">
+                        <option selected value="yes">yes</option>
+                        <option value="no">no</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="Simming Pool">Swimming pool</label>
+                    <select name="swimming_pool" id="swimming_pool">
+                        <option selected value="yes">yes</option>
+                        <option value="no">no</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="gym">Gym</label>
+                    <select name="gym" id="gym">
+                        <option selected value="yes">yes</option>
+                        <option value="no">no</option>
+
+                    </select>
+
+                </div>
+                
+                <div class="form-group">
+                    <label for="turkish_bath">Turkish bath</label>
+                    <select name="turkish_bath" id="turkish_bath">
+                        <option selected value="yes">yes</option>
+                        <option value="no">no</option>
+                    </select>
+                </div>
+                
+
+                <div class="form-group">
+                    <label for="parking">Parking</label>
+                    <select name="parking" id="">
                         <option selected value="yes">yes</option>
                         <option value="no">no</option>
 

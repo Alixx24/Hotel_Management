@@ -43,7 +43,11 @@ class AdminRepo implements AdminInterface
         $room->room_title = $data['title'];
         $room->description = $data['description'];
         $room->price = $data['price'];
-        $room->wifi = $data['wifi'] ?? $room->wifi; // Assuming wifi is optional
+        $room->wifi = $data['wifi'] ?? $room->wifi;
+        $room->parking = $data['parking'] ?? $room->parking;
+        $room->swimming_pool = $data['swimming_pool'] ?? $room->swimming_pool;
+        $room->gym = $data['gym'] ?? $room->gym;
+        $room->turkish_bath = $data['turkish_bath'] ?? $room->turkish_bath;
         $room->room_type = $data['room_type'];
 
         if (!empty($data['image'])) {

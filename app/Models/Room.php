@@ -15,6 +15,9 @@ class Room extends Model
         'price',
         'wifi',
         'parking',
+        'swimming_pool',
+        'gym',
+        'turkish_bath',
         'room_type'
     ];
 }

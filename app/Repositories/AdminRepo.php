@@ -48,10 +48,9 @@ class AdminRepo implements AdminInterface
 
         if (!empty($data['image'])) {
             $imagename = time() . '.' . $data['image']->getClientOriginalExtension();
-            $data['image']->move('room', $imagename);
+            $data['image']->move(public_path('room'), $imagename);
             $room->image = $imagename;
         }
-
         $room->save();
     }
 }

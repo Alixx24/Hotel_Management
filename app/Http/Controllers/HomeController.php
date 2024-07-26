@@ -16,7 +16,6 @@ class HomeController extends Controller
         $this->repo = $repo;
     }
 
-
     public function index()
     {
         $fetchRoom = $this->repo->index();

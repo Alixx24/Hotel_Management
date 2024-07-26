@@ -14,6 +14,7 @@ class Room extends Model
         'description',
         'price',
         'wifi',
+        'parking',
         'room_type'
     ];
 }

@@ -18,6 +18,9 @@ class Room extends Model
         'swimming_pool',
         'gym',
         'turkish_bath',
-        'room_type'
+        'room_type',
+        'breakfast',
+        'lunch',
+        'dinner'
     ];
 }

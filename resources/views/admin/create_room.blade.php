@@ -119,6 +119,34 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="breakfast">Breakfast</label>
+                    <select name="breakfast" id="">
+                        <option selected value="yes">yes</option>
+                        <option value="no">no</option>
+
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="lunch">Lunch</label>
+                    <select name="lunch" id="">
+                        <option selected value="yes">yes</option>
+                        <option value="no">no</option>
+
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="dinner">Dinner</label>
+                    <select name="dinner" id="">
+                        <option selected value="yes">yes</option>
+                        <option value="no">no</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
                     <label for="">Upload image</label>
                     <input type="file" name="image">
                 </div>

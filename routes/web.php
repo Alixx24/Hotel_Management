@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Service\HotelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,11 +39,16 @@ Route::get('/delete_room/{id}', [AdminController::class, 'delete_room'])->name('
 Route::get('/update_room/{id}', [AdminController::class, 'update_room'])->name('room.update');
 Route::post('/edit_room/{id}', [AdminController::class, 'edit_room'])->name('room.edit');
 
+
+
 //home
 Route::get('/rooms', [HomeController::class, 'index'])->name('room.home');
 
 Route::get('/room_details/{id}', [HomeController::class, 'room_details'])->name('room.home.details');
 Route::post('/add_booking/{id}', [HomeController::class, 'add_booking'])->name('room.home.add');
 
+//Services Hotel
+Route::get('/hotels', [HotelController::class, 'index'])->name('hotel.view');
+Route::get('/hotel/add', [HotelController::class, 'create'])->name('hotel.add');
 
 // https://www.youtube.com/watch?v=1K-4KcTVGIs&list=PLm8sgxwSZofeShFFRAfENHymQoKemCGtR&index=3

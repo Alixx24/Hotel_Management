@@ -51,7 +51,14 @@
                     <label for="description">description</label>
                     <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
                 </div>
-
+                <div class="form-group"> 
+                    <label for="essential_tips">Essential Tips</label>
+                    <textarea class="form-control" name="essential_tips" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group"> 
+                    <label for="about_hotel">About the hotel</label>
+                    <textarea class="form-control" name="about_hotel" id="" cols="30" rows="10"></textarea>
+                </div>
                 <div class="form-group">
                     <label for="">Price</label>
                     <input type="number" name="price">

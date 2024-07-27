@@ -52,6 +52,8 @@ class AdminRepo implements AdminInterface
         $room->breakfast = $data['breakfast'] ?? $room->breakfast;
         $room->lunch = $data['lunch'] ?? $room->lunch;
         $room->dinner = $data['dinner'] ?? $room->dinner;
+        $room->essential_tips = $data['essential_tips'] ?? $room->essential_tips;
+        $room->about_hotel = $data['about_hotel'] ?? $room->about_hotel;
 
         if (!empty($data['image'])) {
             $imagename = time() . '.' . $data['image']->getClientOriginalExtension();

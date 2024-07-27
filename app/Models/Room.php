@@ -21,6 +21,8 @@ class Room extends Model
         'room_type',
         'breakfast',
         'lunch',
-        'dinner'
+        'dinner',
+        'essential_tips',
+        'about_hotel'
     ];
 }

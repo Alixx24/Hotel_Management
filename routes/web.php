@@ -29,6 +29,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+Route::get('/agent/register', [HotelController::class, 'agentRegister'])->name('hotel.agent.register.view');
+Route::post('/agent/register', [HotelController::class, 'agentRegisterStore'])->name('hotel.agent.register.store');
 
 Route::get('/', [AdminController::class, 'home']);
 Route::get('/home', [AdminController::class, 'index'])->name('home');

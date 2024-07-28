@@ -15,11 +15,23 @@ class HotelController extends Controller
     }
     public function index()
     {
-        $this->repo->index();
+       $fetchHotels = $this->repo->index();
+       return view('home.hotel.index', compact('fetchHotels'));
     }
 
     public function create()
     {
 
+    }
+
+    public function agentRegister()
+    {
+        return view('home.hotel.agent.register');
+    }
+    public function agentRegisterStore(Request $request)
+    {
+        $data = $request->all();
+        $fetchHotels = $this->repo->agentRegisterStore($data);
+        return redirect()->back()->with('message', 'Register successfully');
     }
 }

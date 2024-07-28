@@ -6,4 +6,5 @@ interface HotelInterface {
 
     function index();
     function create();
+    function agentRegisterStore(array $data);
 }

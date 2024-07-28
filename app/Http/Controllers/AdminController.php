@@ -22,7 +22,7 @@ class AdminController extends Controller
             $userType = Auth::user()->usertype;
 
             if ($userType == 'user') {
-                return view('home.index');
+                return view('home.welcome');
             } else if ($userType == 'admin') {
                 return view('admin.index');
             } else {
@@ -34,7 +34,7 @@ class AdminController extends Controller
     public function home()
     {
         $fetchRoom = $this->repo->home();
-        return view('home.index', compact('fetchRoom'));
+        return view('admin.index', compact('fetchRoom'));
     }
 
     public function create_room()

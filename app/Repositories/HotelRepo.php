@@ -31,6 +31,7 @@ class HotelRepo implements HotelInterface
         $hotel->city = $data['city'];
         $hotel->star = $data['star'];
         $hotel->number_rooms = $data['number_rooms'];
+
         $hotel->password = Hash::make($data['password']);
         $hotel->save();
 

@@ -9,7 +9,7 @@ class HomeRepo implements HomeInterface
 {
     public function index()
     {
-        return Room::all();
+        return Room::select('id', 'room_title','description', 'price')->get();
     }
 
     public function room_details($id)

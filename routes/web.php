@@ -32,7 +32,7 @@ Route::middleware([
 Route::get('/agent/register', [HotelController::class, 'agentRegister'])->name('hotel.agent.register.view');
 Route::post('/agent/register', [HotelController::class, 'agentRegisterStore'])->name('hotel.agent.register.store');
 
-Route::get('/', [AdminController::class, 'home']);
+// Route::get('/', [AdminController::class, 'index']);
 Route::get('/home', [AdminController::class, 'index'])->name('home');
 Route::get('/create_room', [AdminController::class, 'create_room'])->name('room.create');
 Route::post('/add_room', [AdminController::class, 'add_room'])->name('room.store');
@@ -44,7 +44,7 @@ Route::post('/edit_room/{id}', [AdminController::class, 'edit_room'])->name('roo
 
 
 //home
-Route::get('/rooms', [HomeController::class, 'index'])->name('room.home');
+Route::get('/', [HomeController::class, 'index'])->name('room.home');
 
 Route::get('/room_details/{id}', [HomeController::class, 'room_details'])->name('room.home.details');
 Route::post('/add_booking/{id}', [HomeController::class, 'add_booking'])->name('room.home.add');

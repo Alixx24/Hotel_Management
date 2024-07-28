@@ -2,8 +2,9 @@
 
 namespace App\Repositories;
 
-interface HomeInterface {
+interface HomeInterface
+{
     function index();
-   function room_details($id);
-   function add_booking(array $data, $id);
+    function room_details($id);
+    function add_booking(array $data, $id);
 }

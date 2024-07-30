@@ -29,8 +29,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-Route::get('/agent/register', [HotelController::class, 'agentRegister'])->name('hotel.agent.register.view');
-Route::post('/agent/register', [HotelController::class, 'agentRegisterStore'])->name('hotel.agent.register.store');
+
 
 // Route::get('/', [AdminController::class, 'index']);
 Route::get('/home', [AdminController::class, 'index'])->name('home');
@@ -52,5 +51,11 @@ Route::post('/add_booking/{id}', [HomeController::class, 'add_booking'])->name('
 //Services Hotel
 Route::get('/hotels', [HotelController::class, 'index'])->name('hotel.view');
 Route::get('/hotel/add', [HotelController::class, 'create'])->name('hotel.add');
+
+Route::get('/agent/register', [HotelController::class, 'agentRegister'])->name('hotel.agent.register.view');
+Route::post('/agent/register', [HotelController::class, 'agentRegisterStore'])->name('hotel.agent.register.store');
+
+Route::get('/agent/login', [HotelController::class, 'login'])->name('hotel.agent.login.view');
+Route::post('/agent/login', [HotelController::class, 'checkLogin'])->name('hotel.agent.login.check');
 
 // https://www.youtube.com/watch?v=1K-4KcTVGIs&list=PLm8sgxwSZofeShFFRAfENHymQoKemCGtR&index=3

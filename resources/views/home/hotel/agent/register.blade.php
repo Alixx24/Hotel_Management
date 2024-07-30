@@ -8,13 +8,14 @@
 
         <form method="POST" action="{{ route('hotel.agent.register.store') }}">
             @csrf
-
+            
             @if($errors)
             @foreach ($errors->all() as $errors)
             <li class="text-danger">
                 {{$errors}}
             </li>
             @endforeach
+            @endif
 
             <div>
                 <x-label for="name" value="{{ __('Hotel Name') }}" />

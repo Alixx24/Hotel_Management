@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Hotel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class HotelRepo implements HotelInterface
@@ -10,12 +11,17 @@ class HotelRepo implements HotelInterface
 
     public function index()
     {
-        return Hotel::select('id','name','country','city', 'star')->get();
+        return Hotel::select('id', 'name', 'country', 'city', 'star')->get();
     }
 
     public function agentRegisterStore(array $data)
     {
         $this->saveAgent(new Hotel(), $data);
+    }
+
+    public function checkLoginAgent($credentials)
+    {
+       return Auth::guard('hotel')->attempt($credentials);
     }
 
     private function saveAgent(Hotel $hotel, array $data)
@@ -30,6 +36,5 @@ class HotelRepo implements HotelInterface
 
         $hotel->password = Hash::make($data['password']);
         $hotel->save();
-
     }
 }

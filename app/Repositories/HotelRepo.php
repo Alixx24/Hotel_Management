@@ -13,10 +13,6 @@ class HotelRepo implements HotelInterface
         return Hotel::select('id','name','country','city', 'star')->get();
     }
 
-    public function create()
-    {
-
-    }
     public function agentRegisterStore(array $data)
     {
         $this->saveAgent(new Hotel(), $data);

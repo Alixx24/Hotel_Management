@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Service;
 use App\Http\Controllers\Controller;
 use App\Repositories\HotelInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HotelController extends Controller
 {
@@ -19,14 +20,13 @@ class HotelController extends Controller
        return view('home.hotel.index', compact('fetchHotels'));
     }
 
-    public function create()
-    {
-
-    }
-
     public function agentRegister()
     {
         return view('home.hotel.agent.register');
+    }
+    public function showForAgent()
+    {
+        dd(Auth::user()->id);
     }
     public function agentRegisterStore(Request $request)
     {

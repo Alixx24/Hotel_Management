@@ -16,7 +16,6 @@ class HotelController extends Controller
     }
     public function index()
     {
-        // dd(Auth::guard('hotel')->user());
         $fetchHotels = $this->repo->index();
         return view('home.hotel.index', compact('fetchHotels'));
     }
@@ -25,10 +24,13 @@ class HotelController extends Controller
     {
         return view('home.hotel.agent.register');
     }
-    public function showForAgent()
+
+    public function agentDashboard()
     {
-        // dd(Auth::user()->id);
+        $agentInfo = $this->repo->findAgent();
+        return view('home.hotel.agent.dashboard', compact('agentInfo'));
     }
+
     public function agentRegisterStore(Request $request)
     {
         $data = $request->all();
@@ -46,7 +48,7 @@ class HotelController extends Controller
         $credentials = $request->only('email', 'password');
         $agent = $this->repo->checkLoginAgent($credentials);
         if ($agent) {
-            return redirect()->intended('hotels');
+            return redirect()->intended('/agent/dashboard/' . $this->repo->authGuard());
         }
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',

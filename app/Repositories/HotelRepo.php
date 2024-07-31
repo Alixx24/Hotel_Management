@@ -21,7 +21,7 @@ class HotelRepo implements HotelInterface
 
     public function checkLoginAgent($credentials)
     {
-       return Auth::guard('hotel')->attempt($credentials);
+        return Auth::guard('hotel')->attempt($credentials);
     }
 
     private function saveAgent(Hotel $hotel, array $data)
@@ -36,5 +36,16 @@ class HotelRepo implements HotelInterface
 
         $hotel->password = Hash::make($data['password']);
         $hotel->save();
+    }
+
+    public function findAgent()
+    {
+        $id = $this->authGuard();
+        return Hotel::where('id',$id)->select('email','name', 'number_rooms', 'country', 'region','city', 'star')->get();
+    }
+
+    public function authGuard()
+    {
+        return Auth::guard('hotel')->user()->id;
     }
 }

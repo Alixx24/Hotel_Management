@@ -55,7 +55,9 @@ Route::get('/hotel/add', [HotelController::class, 'create'])->name('hotel.add');
 Route::get('/agent/register', [HotelController::class, 'agentRegister'])->name('hotel.agent.register.view');
 Route::post('/agent/register', [HotelController::class, 'agentRegisterStore'])->name('hotel.agent.register.store');
 
+//Agents Hotels
 Route::get('/agent/login', [HotelController::class, 'login'])->name('hotel.agent.login.view');
 Route::post('/agent/login', [HotelController::class, 'checkLogin'])->name('hotel.agent.login.check');
+Route::get('/agent/dashboard/{id}', [HotelController::class, 'agentDashboard'])->name('hotel.agent.dashboard');
 
 // https://www.youtube.com/watch?v=1K-4KcTVGIs&list=PLm8sgxwSZofeShFFRAfENHymQoKemCGtR&index=3

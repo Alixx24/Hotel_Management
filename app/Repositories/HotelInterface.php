@@ -9,4 +9,5 @@ interface HotelInterface {
     function checkLoginAgent($credentials);
     function authGuard();
     function findAgent();
+    function edit($id);
 }

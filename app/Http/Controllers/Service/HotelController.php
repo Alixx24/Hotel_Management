@@ -54,4 +54,15 @@ class HotelController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
+
+    public function edit($id)
+    {
+        $fetchHotel = $this->repo->edit($id);
+        return view('home.hotel.agent.edit', compact('fetchHotel'));
+    }
+
+    public function update(Request $request,$id)
+    {
+        dd('dsssss');
+    }
 }

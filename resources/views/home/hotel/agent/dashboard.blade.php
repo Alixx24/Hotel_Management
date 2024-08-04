@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Agent Dashboard') }} Welcome {{ $agentInfo[0]->name }}
         </h2>
+        <a class="btn btn-danger" href="{{ url('/hotel/edit/'.$agentInfo[0]->id) }}">Edit ?</a>
     </x-slot>
 
     <div class="py-12">

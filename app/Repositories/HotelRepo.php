@@ -41,11 +41,16 @@ class HotelRepo implements HotelInterface
     public function findAgent()
     {
         $id = $this->authGuard();
-        return Hotel::where('id',$id)->select('email','name', 'number_rooms', 'country', 'region','city', 'star')->get();
+        return Hotel::where('id',$id)->select('id','email','name', 'number_rooms', 'country', 'region','city', 'star')->get();
     }
 
     public function authGuard()
     {
         return Auth::guard('hotel')->user()->id;
+    }
+
+    public function edit($id)
+    {
+        return Hotel::where('id',$id)->select('id','email','name', 'number_rooms', 'country', 'region','city', 'star')->get();
     }
 }

@@ -51,6 +51,9 @@ Route::post('/add_booking/{id}', [HomeController::class, 'add_booking'])->name('
 //Services Hotel
 Route::get('/hotels', [HotelController::class, 'index'])->name('hotel.view');
 Route::get('/hotel/add', [HotelController::class, 'create'])->name('hotel.add');
+Route::get('/hotel/edit/{id}', [HotelController::class, 'edit'])->name('hotel.agent.edit');
+Route::post('/hotel/update/{id}', [HotelController::class, 'update'])->name('hotel.agent.update');
+
 
 Route::get('/agent/register', [HotelController::class, 'agentRegister'])->name('hotel.agent.register.view');
 Route::post('/agent/register', [HotelController::class, 'agentRegisterStore'])->name('hotel.agent.register.store');

@@ -33,7 +33,6 @@ class HotelRepo implements HotelInterface
         $hotel->city = $data['city'];
         $hotel->star = $data['star'];
         $hotel->number_rooms = $data['number_rooms'];
-
         $hotel->password = Hash::make($data['password']);
         $hotel->save();
     }
@@ -41,7 +40,7 @@ class HotelRepo implements HotelInterface
     public function findAgent()
     {
         $id = $this->authGuard();
-        return Hotel::where('id',$id)->select('id','email','name', 'number_rooms', 'country', 'region','city', 'star')->get();
+        return $this->findMethod($id);
     }
 
     public function authGuard()
@@ -51,6 +50,11 @@ class HotelRepo implements HotelInterface
 
     public function edit($id)
     {
-        return Hotel::where('id',$id)->select('id','email','name', 'number_rooms', 'country', 'region','city', 'star')->get();
+        return $this->findMethod($id);
+    }
+
+    private function findMethod($id)
+    {
+        return Hotel::where('id', $id)->select('id', 'email', 'name', 'number_rooms', 'country', 'region', 'city', 'star')->get();
     }
 }

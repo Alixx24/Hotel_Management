@@ -14,6 +14,7 @@ class HotelController extends Controller
     {
         $this->repo = $repo;
     }
+
     public function index()
     {
         $fetchHotels = $this->repo->index();

@@ -66,4 +66,9 @@ class HotelController extends Controller
     {
         dd('dsssss');
     }
+
+    public function report()
+    {
+        
+    }
 }

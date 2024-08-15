@@ -40,8 +40,8 @@ class HomeController extends Controller
         return redirect()->back()->with('message', 'room is added!');
     }
 
-    public function violation()
+    public function violation($id)
     {
-        
+        $this->repo->violation($id);
     }
 }

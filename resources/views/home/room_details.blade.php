@@ -22,7 +22,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
-                    <a class="btn btn-danger" href="{{ url('hotel_violation', $fetchRoom->id) }}">Report?</a>
+                    <a class="btn btn-danger" href="{{ route('room.home.violation', $fetchRoom->id) }}">Report?</a>
                     <a href="{{ url('view_room') }}">View Room</a>
 
                 </div>

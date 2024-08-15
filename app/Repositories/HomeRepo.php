@@ -29,4 +29,9 @@ class HomeRepo implements HomeInterface
 
         $booking->save();
     }
+
+    public function violation($id)
+    {
+        dd($id);
+    }
 }

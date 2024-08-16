@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Booking;
 use App\Models\Room;
+use App\Models\ViolationName;
 
 class HomeRepo implements HomeInterface
 {
@@ -30,8 +31,13 @@ class HomeRepo implements HomeInterface
         $booking->save();
     }
 
-    public function violation($id)
+    public function violation($fetchRoom,$violation)
     {
-        dd($id);
+        dd($fetchRoom, $violation);
+    }
+
+    public function fetchViolation()
+    {
+        return ViolationName::select('id', 'violation')->get();
     }
 }

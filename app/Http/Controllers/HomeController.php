@@ -24,7 +24,8 @@ class HomeController extends Controller
     public function room_details($id)
     {
         $fetchRoom = $this->repo->room_details($id);
-        return view('home.room_details', compact('fetchRoom'));
+        $fetchViolations = $this->repo->fetchViolation();
+        return view('home.room_details', compact('fetchRoom', 'fetchViolations'));
     }
 
     public function add_booking(Request $request, $id)
@@ -40,8 +41,8 @@ class HomeController extends Controller
         return redirect()->back()->with('message', 'room is added!');
     }
 
-    public function violation($id)
+    public function violation($fetchRoom,$violation)
     {
-        $this->repo->violation($id);
+        $this->repo->violation($fetchRoom,$violation);
     }
 }

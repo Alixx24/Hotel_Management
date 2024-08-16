@@ -48,7 +48,7 @@ Route::get('/', [HomeController::class, 'index'])->name('room.home');
 Route::get('/room_details/{id}', [HomeController::class, 'room_details'])->name('room.home.details');
 Route::post('/add_booking/{id}', [HomeController::class, 'add_booking'])->name('room.home.add');
 
-Route::get('/hotel_violation/{id}', [HomeController::class, 'violation'])->name('room.home.violation');
+Route::get('/room_details/{fetchRoom}/hotel_violation/{violation}', [HomeController::class, 'violation'])->name('room.home.violation');
 
 
 //Services Hotel

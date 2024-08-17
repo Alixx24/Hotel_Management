@@ -44,5 +44,6 @@ class HomeController extends Controller
     public function violation($fetchRoom,$violation)
     {
         $this->repo->violation($fetchRoom,$violation);
+        return redirect()->back()->with('message', 'The Report Was Sent Successfully');
     }
 }

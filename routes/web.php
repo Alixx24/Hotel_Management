@@ -47,11 +47,12 @@ Route::get('/', [HomeController::class, 'index'])->name('room.home');
 
 Route::get('/room_details/{id}', [HomeController::class, 'room_details'])->name('room.home.details');
 Route::post('/add_booking/{id}', [HomeController::class, 'add_booking'])->name('room.home.add');
-
 Route::get('/room_details/{fetchRoom}/hotel_violation/{violation}', [HomeController::class, 'violation'])->name('room.home.violation');
+Route::get('/hotel_details/{id}', [HomeController::class, 'hotel_details'])->name('hotel.home.details');
 
 
 //Services Hotel
+
 Route::get('/hotels', [HotelController::class, 'index'])->name('hotel.view');
 Route::get('/hotel/add', [HotelController::class, 'create'])->name('hotel.add');
 Route::get('/hotel/edit/{id}', [HotelController::class, 'edit'])->name('hotel.agent.edit');

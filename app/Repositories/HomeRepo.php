@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Booking;
+use App\Models\Hotel;
 use App\Models\Room;
 use App\Models\Violation;
 use App\Models\ViolationName;
@@ -12,7 +13,7 @@ class HomeRepo implements HomeInterface
 {
     public function index()
     {
-        return Room::select('id', 'room_title', 'description', 'price')->get();
+        return Hotel::select('id', 'name', 'region', 'country', 'city','star')->get();
     }
 
     public function room_details($id)
@@ -36,29 +37,21 @@ class HomeRepo implements HomeInterface
     public function violation($fetchRoom, $violation)
     {
         $report = new Violation();
-
-        // $report->hotel_id = 62;
-        // $report->violation_id = 1;
-        // $report->user_id = 2;
-        // $report->create([
-        //     'hotel_id ' => 62,
-        //     'iolation_id' => 1,
-        //     'user_id' => 1
-        // ]);
-
-        // dd($fetchRoom);
         $roomId = (int) $fetchRoom;
         $violationId = (int) $violation;
         $book = new Violation();
         $book->room_id = $roomId;
         $book->user_id = Auth::user()->id;
         $book->violation_id = $violationId;
-        // dd($book);
 
         $book->save();
     }
     public function fetchViolation()
     {
         return ViolationName::select('id', 'violation')->get();
+    }
+
+    public function hotel_details($id) {
+       return Hotel::find($id);
     }
 }

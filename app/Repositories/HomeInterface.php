@@ -9,4 +9,5 @@ interface HomeInterface
     function add_booking(array $data, $id);
     function violation($fetchRoom,$violation);
     function fetchViolation();
+    function hotel_details($id);
 }

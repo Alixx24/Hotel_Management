@@ -23,4 +23,9 @@ class Hotel extends Authenticatable
        protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function comments()
+    {
+        return $this->morphMany('Comment', 'commentable');
+    }
 }

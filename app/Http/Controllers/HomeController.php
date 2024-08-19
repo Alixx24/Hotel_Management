@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Comment;
 use App\Models\Room;
 use App\Repositories\HomeInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
@@ -52,5 +54,28 @@ class HomeController extends Controller
     {
         $this->repo->violation($fetchRoom,$violation);
         return redirect()->back()->with('message', 'The Report Was Sent Successfully');
+    }
+
+    public function commentStore(Comment $comment,Request $request, $id)
+    {
+        $data = $request->all();
+
+        // $validator = Validator::make($data, [
+        //     'commentBody' => 'required',
+        // ]);
+
+     
+        $comment->body = $data['commentBody'];
+        $comment->author_id = Auth::user()->id;
+        $comment->owner_post_id = $id;
+        $comment->seen = 0;
+        $comment->approved = 0;
+        $comment->status = 0;
+       
+
+        $comment->save();
+        return redirect()->back()->with('message', 'Commetnt Sent Successfully');
+
+
     }
 }

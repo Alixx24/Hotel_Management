@@ -50,6 +50,7 @@ Route::post('/add_booking/{id}', [HomeController::class, 'add_booking'])->name('
 Route::get('/room_details/{fetchRoom}/hotel_violation/{violation}', [HomeController::class, 'violation'])->name('room.home.violation');
 Route::get('/hotel_details/{id}', [HomeController::class, 'hotel_details'])->name('hotel.home.details');
 
+Route::post('/hotel_details/{id}/comment', [HomeController::class, 'commentStore'])->name('hotel.home.comment');
 
 //Services Hotel
 

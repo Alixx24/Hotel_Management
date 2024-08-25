@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="{{ asset('customer-assets/css/login.css') }}">
 <link rel="stylesheet" href="{{ asset('admin-assets/sweetalert/sweetalert2.css') }}">
 <link rel="stylesheet" href="{{ asset('customer-assets/css/style.css') }}">
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
 <link rel="stylesheet" href="{{ asset('admin-assets/select2/css/select2.min.css') }}">

@@ -48,23 +48,20 @@
             <div class="card-body">
                 @auth
                 <a href="{{ url('/dashboard') }}"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">home</a>
+                    class="text-light">home</a>
                 @else
         
-                <a href="{{ route('hotel.agent.login.view') }}"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Agent
-                    Login?</a>
-                <a href="{{ route('hotel.agent.register.view') }}"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Agent
-                    Register?</a>
+                <a class="btn btn-light" href="{{ route('hotel.agent.login.view') }}">Agent Login</a>
+                <a class="btn btn-success" href="{{ route('hotel.agent.register.view') }}"
+                    class="text-light">  Agent Register</a>
                 <hr>
-                <a href="{{ route('login') }}"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
+                <a class="btn btn-light" href="{{ route('login') }}"
+                    class="text-light">Log
                     in</a>
         
                 @if (Route::has('register'))
-                <a href="{{ route('register') }}"
-                    class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                <a class="btn btn-success" href="{{ route('register') }}"
+                    class="text-light">Register</a>
                 @endif
                 @endauth
             </div>

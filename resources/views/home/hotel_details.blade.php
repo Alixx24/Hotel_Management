@@ -27,25 +27,34 @@
         <label for="exampleFormControlTextarea1">Example textarea</label>
         <textarea class="form-control" name="commentBody" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
-  
+
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
 
-            <button class="btn btn-primary" type="submit">Submit</button>
+          <button class="btn btn-primary" type="submit">Submit</button>
         </div>
-    </div>
+      </div>
     </form>
     @endauth
 
     @guest
-    <div class="form-group">
-      <label for="comment">Your Email</label>
-      <input type="email" class="form-control" name="email" required id="email"></input>
-    </div>
-    <div class="form-group">
-      <label for="comment">Your Comment</label>
-      <input type="email" class="form-control" name="email" required id="email"></input>
-    </div>
+    <form action="{{ url('/hotel_details/'.$fetchHotel->id.'/commentGuest') }}" method="POST">
+      @csrf
+      <div class="form-group">
+        <label for="comment">Your Email</label>
+        <input type="email" class="form-control" name="guestEmail" required id="email"></input>
+      </div>
+      <div class="form-group">
+        <label for="comment">Your Comment</label>
+        <input type="text" class="form-control" name="guestCommentBody" required id="guestCommentBody"></input>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
     @endguest
   </div>
 </div>

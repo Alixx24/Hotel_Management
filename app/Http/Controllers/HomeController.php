@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Comment;
 use App\Models\Room;
+use App\Models\User;
 use App\Repositories\HomeInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,13 +51,13 @@ class HomeController extends Controller
         return view('home.hotel_details', compact('fetchHotel', 'fetchViolations'));
     }
 
-    public function violation($fetchRoom,$violation)
+    public function violation($fetchRoom, $violation)
     {
-        $this->repo->violation($fetchRoom,$violation);
+        $this->repo->violation($fetchRoom, $violation);
         return redirect()->back()->with('message', 'The Report Was Sent Successfully');
     }
 
-    public function commentStore(Comment $comment,Request $request, $id)
+    public function commentStore(Comment $comment, Request $request, $id)
     {
         $data = $request->all();
 
@@ -64,18 +65,42 @@ class HomeController extends Controller
         //     'commentBody' => 'required',
         // ]);
 
-     
+
         $comment->body = $data['commentBody'];
         $comment->author_id = Auth::user()->id;
         $comment->owner_post_id = $id;
         $comment->seen = 0;
         $comment->approved = 0;
         $comment->status = 0;
-       
+
 
         $comment->save();
         return redirect()->back()->with('message', 'Commetnt Sent Successfully');
+    }
+
+    public function commentGuestStore(Comment $comment, User $user, Request $request, $id)
+    {
+        $data = $request->all();
+
+        // $validator = Validator::make($data, [
+        //     'commentBody' => 'required',
+        // ]);
+        $nameOfGuest = explode('@', $data['guestEmail']);
+        $user->email = $data['guestEmail'];
+        $user->name = $nameOfGuest[0];
+        $user->password = 'password';
+        $user->userType = 'guest';
+        $user->save();
 
 
+        $authorIdFind = User::where('email', $data['guestEmail'])->get();
+
+        $comment->body = $data['guestCommentBody'];
+        $comment->author_id =  $authorIdFind[0]->id;
+        $comment->owner_post_id = $id;
+        $comment->seen = 0;
+        $comment->approved = 0;
+        $comment->status = 0;
+        $comment->save();
     }
 }

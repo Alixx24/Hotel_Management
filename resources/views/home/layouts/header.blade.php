@@ -50,7 +50,7 @@
                 <a href="{{ url('/dashboard') }}"
                     class="text-light">home</a>
                 @else
-        
+                <a class="btn btn-danger" href="{{ route('home.user.ticket') }}">Ticket</a>
                 <a class="btn btn-light" href="{{ route('hotel.agent.login.view') }}">Agent Login</a>
                 <a class="btn btn-success" href="{{ route('hotel.agent.register.view') }}"
                     class="text-light">  Agent Register</a>

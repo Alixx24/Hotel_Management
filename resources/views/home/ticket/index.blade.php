@@ -15,7 +15,7 @@
         @csrf
       
 
-        <select name="guarantee" id="guarantee" class="p-1">
+        <select name="subject" id="subject" class="p-1">
              @foreach($fetchTicketCats as $data)
             <option value="{{ $data->id }}">{{ $data->name }}
             </option>
@@ -24,8 +24,8 @@
         </select>
 
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">Example textarea</label>
-            <textarea class="form-control" name="commentBody" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
 
         <div class="form-group">

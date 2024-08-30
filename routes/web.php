@@ -44,6 +44,7 @@ Route::post('/edit_room/{id}', [AdminController::class, 'edit_room'])->name('roo
 //ticket
 
 Route::get('/ticket', [TicketController::class, 'index'])->name('home.user.ticket');
+Route::post('/ticket', [TicketController::class, 'store'])->name('home.user.ticket.store');
 
 //home
 Route::get('/', [HomeController::class, 'index'])->name('room.home');

@@ -2,45 +2,20 @@
 
 
 @section('content')
+<section class="">
+    <section id="main-body-two-col" class="container-xxl body-container">
+        <section class="row">
 
+<a class="btn btn-info" href="{{ route('home.user.ticket.create') }}">تیکت جدید</a>
+            
+            <main id="main-body" class="main-body col-md-9">
+                <section class="content-wrapper bg-white p-3 rounded-2 mb-2">
 
+               
 
-<div class="card text-center">
-    <div class="card-header">
-        Subject
-    </div>
-
-   
-    <form method="POST">
-        @csrf
-      
-
-        <select name="subject" id="subject" class="p-1">
-             @foreach($fetchTicketCats as $data)
-            <option value="{{ $data->id }}">{{ $data->name }}
-            </option>
-            @endforeach
-
-        </select>
-
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Description</label>
-            <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-
-                <button class="btn btn-primary" type="submit">Submit</button>
-            </div>
-        </div>
-    </form>
- 
-
-
-</div>
-</div>
-
-
-
+                </section>
+            </main>
+        </section>
+    </section>
+</section>
 @endsection

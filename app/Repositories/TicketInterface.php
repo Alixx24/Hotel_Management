@@ -7,5 +7,6 @@ use Illuminate\Support\Arr;
 
 Interface TicketInterface {
     function index();
+    function create();
     function storeTicket(Ticket $ticket,array $data);
 }

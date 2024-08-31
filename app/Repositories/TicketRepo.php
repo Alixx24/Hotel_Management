@@ -10,13 +10,15 @@ class TicketRepo implements TicketInterface
 {
     public function index()
     {
+        
+    }
+    public function create()
+    {
        return TicketCategory::select('id', 'name')->get();
     }
     
     public function storeTicket(Ticket $ticket,array $data)
     {
-       
-
         $ticket->subject = $data['subject'];
         $ticket->description = $data['description'];
         $ticket->user_id = Auth::user()->id;

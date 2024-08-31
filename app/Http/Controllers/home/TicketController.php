@@ -19,6 +19,11 @@ class TicketController extends Controller
        $fetchTicketCats = $this->repo->index();
         return view('home.ticket.index', compact('fetchTicketCats'));
     }
+    public function create()
+    {
+       $fetchTicketCats = $this->repo->create();
+        return view('home.ticket.create', compact('fetchTicketCats'));
+    }
 
     public function store(Request $request, Ticket $ticket)
     {

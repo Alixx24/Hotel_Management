@@ -3,8 +3,6 @@
 
 @section('content')
 
-
-
 <div class="card">
 
     <section class="order-wrapper">

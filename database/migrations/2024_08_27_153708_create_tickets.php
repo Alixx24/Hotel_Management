@@ -17,10 +17,13 @@ return new class extends Migration
             $table->text('description');
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('seen')->default(0)->comment('0 => unseen, 1 => seen');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('reference_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('category_id')->constrained('ticket_categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('reference_id')->constrained('ticket_admins')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('ticket_categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('priority_id')->constrained('ticket_priorities')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('ticket_id')->nullable()->constrained('tickets')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

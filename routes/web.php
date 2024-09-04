@@ -1,11 +1,17 @@
 <?php
 
+use App\Http\Controllers\Admin\Ticket\TicketAdminController;
+use App\Http\Controllers\Admin\Ticket\TicketCategoryController;
+use App\Http\Controllers\admin\ticket\TicketController;
+use App\Http\Controllers\Admin\Ticket\TicketPriorityController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\home\TicketController;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Service\HotelController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Customer\Profile\OrderController as ProfileOrderController;
+use App\Http\Controllers\Customer\Profile\TicketController as ProfileTicketController;
+use App\Http\Controllers\Customer\Profile\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +38,7 @@ Route::middleware([
 });
 
 
+
 // Route::get('/', [AdminController::class, 'index']);
 Route::get('/home', [AdminController::class, 'index'])->name('home');
 Route::get('/create_room', [AdminController::class, 'create_room'])->name('room.create');
@@ -41,12 +48,8 @@ Route::get('/delete_room/{id}', [AdminController::class, 'delete_room'])->name('
 Route::get('/update_room/{id}', [AdminController::class, 'update_room'])->name('room.update');
 Route::post('/edit_room/{id}', [AdminController::class, 'edit_room'])->name('room.edit');
 
-//ticket
 
-Route::get('/ticket/create', [TicketController::class, 'create'])->name('home.user.ticket.create');
-Route::post('/ticket/create', [TicketController::class, 'store'])->name('home.user.ticket.store');
 
-Route::get('/ticket', [TicketController::class, 'index'])->name('home.user.ticket');
 
 //home
 Route::get('/', [HomeController::class, 'index'])->name('room.home');
@@ -76,3 +79,59 @@ Route::post('/agent/login', [HotelController::class, 'checkLogin'])->name('hotel
 Route::get('/agent/dashboard/{id}', [HotelController::class, 'agentDashboard'])->name('hotel.agent.dashboard');
 
 // https://www.youtube.com/watch?v=1K-4KcTVGIs&list=PLm8sgxwSZofeShFFRAfENHymQoKemCGtR&index=3
+
+//Ticket
+Route::prefix('admin/ticket')->namespace('Ticket')->group(function () {
+
+    //category
+    Route::prefix('category')->group(function () {
+        Route::get('/', [TicketCategoryController::class, 'index'])->name('admin.ticket.category.index');
+        Route::get('/create', [TicketCategoryController::class, 'create'])->name('admin.ticket.category.create');
+        Route::post('/store', [TicketCategoryController::class, 'store'])->name('admin.ticket.category.store');
+        Route::get('/edit/{ticketCategory}', [TicketCategoryController::class, 'edit'])->name('admin.ticket.category.edit');
+        Route::put('/update/{ticketCategory}', [TicketCategoryController::class, 'update'])->name('admin.ticket.category.update');
+        Route::delete('/destroy/{ticketCategory}', [TicketCategoryController::class, 'destroy'])->name('admin.ticket.category.destroy');
+        Route::get('/status/{ticketCategory}', [TicketCategoryController::class, 'status'])->name('admin.ticket.category.status');
+    });
+
+    //priority
+    Route::prefix('priority')->group(function () {
+        Route::get('/', [TicketPriorityController::class, 'index'])->name('admin.ticket.priority.index');
+        Route::get('/create', [TicketPriorityController::class, 'create'])->name('admin.ticket.priority.create');
+        Route::post('/store', [TicketPriorityController::class, 'store'])->name('admin.ticket.priority.store');
+        Route::get('/edit/{ticketPriority}', [TicketPriorityController::class, 'edit'])->name('admin.ticket.priority.edit');
+        Route::put('/update/{ticketPriority}', [TicketPriorityController::class, 'update'])->name('admin.ticket.priority.update');
+        Route::delete('/destroy/{ticketPriority}', [TicketPriorityController::class, 'destroy'])->name('admin.ticket.priority.destroy');
+        Route::get('/status/{ticketPriority}', [TicketPriorityController::class, 'status'])->name('admin.ticket.priority.status');
+    });
+
+    //admin
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [TicketAdminController::class, 'index'])->name('admin.ticket.admin.index');
+        Route::get('/set/{admin}', [TicketAdminController::class, 'set'])->name('admin.ticket.admin.set');
+    });
+
+    //main
+    Route::get('/', [TicketController::class, 'index'])->name('admin.ticket.index');
+    Route::get('/new-tickets', [TicketController::class, 'newTickets'])->name('admin.ticket.newTickets');
+    Route::get('/open-tickets', [TicketController::class, 'openTickets'])->name('admin.ticket.openTickets');
+    Route::get('/close-tickets', [TicketController::class, 'closeTickets'])->name('admin.ticket.closeTickets');
+    Route::get('/show/{ticket}', [TicketController::class, 'show'])->name('admin.ticket.show');
+    Route::post('/answer/{ticket}', [TicketController::class, 'answer'])->name('admin.ticket.answer');
+    Route::get('/change/{ticket}', [TicketController::class, 'change'])->name('admin.ticket.change');
+});
+
+
+Route::prefix('userprofile')->namespace('Profile')->group(function () {
+
+    Route::get('/orders', [ProfileOrderController::class, 'index'])->name('customer.profile.orders');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('customer.profile.profile');
+    Route::get('/my-tickets', [ProfileTicketController::class, 'index'])->name('customer.profile.my-tickets');
+    Route::get('my-tickets/show/{ticket}', [ProfileTicketController::class, 'show'])->name('customer.profile.my-tickets.show');
+    Route::post('my-tickets/answer/{ticket}', [ProfileTicketController::class, 'answer'])->name('customer.profile.my-tickets.answer');
+    Route::get('my-tickets/change/{ticket}', [ProfileTicketController::class, 'change'])->name('customer.profile.my-tickets.change');
+    Route::get('my-tickets/create', [ProfileTicketController::class, 'create'])->name('customer.profile.my-tickets.create');
+    Route::post('my-tickets/store', [ProfileTicketController::class, 'store'])->name('customer.profile.my-tickets.store');
+    // Route::post('my-tickets/dowload/{file_name}', [ProfileTicketController::class, 'store'])->name('customer.profile.my-tickets.store');
+
+});

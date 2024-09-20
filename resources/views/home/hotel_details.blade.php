@@ -36,7 +36,13 @@
     </div>
     </form>
     @endauth
-
+<div>
+  
+    
+    @foreach ($fetchThisComments as $object)
+  {{ $object->user->name }}</br>{{ $object->body }} (date: {{$object->created_at }})<hr>
+@endforeach</p>
+</div>
     @guest
     <div class="form-group">
       <label for="comment">Your Email</label>

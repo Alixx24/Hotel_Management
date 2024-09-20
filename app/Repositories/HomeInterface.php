@@ -10,4 +10,5 @@ interface HomeInterface
     function violation($fetchRoom,$violation);
     function fetchViolation();
     function hotel_details($id);
+    function fetchThisComments($id);
 }

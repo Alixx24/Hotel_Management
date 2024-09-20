@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Booking;
+use App\Models\Comment;
 use App\Models\Hotel;
 use App\Models\Room;
 use App\Models\Violation;
@@ -53,5 +54,14 @@ class HomeRepo implements HomeInterface
 
     public function hotel_details($id) {
        return Hotel::find($id);
+    }
+
+    public function fetchThisComments($id)
+    {
+        // $this->hotel_details($id);
+        $hotelId = $this->hotel_details($id)['id'];
+        $result = Comment::where('owner_post_id', $hotelId)->select('body','author_id', 'owner_post_id','created_at')->get();
+    //    dd($result);
+        return $result;
     }
 }

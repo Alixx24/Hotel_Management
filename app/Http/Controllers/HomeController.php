@@ -48,7 +48,8 @@ class HomeController extends Controller
     {
         $fetchHotel = $this->repo->hotel_details($id);
         $fetchViolations = $this->repo->fetchViolation();
-        return view('home.hotel_details', compact('fetchHotel', 'fetchViolations'));
+        $fetchThisComments = $this->repo->fetchThisComments($id);
+        return view('home.hotel_details', compact('fetchHotel', 'fetchViolations', 'fetchThisComments'));
     }
 
     public function violation($fetchRoom, $violation)
@@ -103,4 +104,6 @@ class HomeController extends Controller
         $comment->status = 0;
         $comment->save();
     }
+
+
 }

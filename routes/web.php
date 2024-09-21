@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Customer\Profile\OrderController as ProfileOrderController;
 use App\Http\Controllers\Customer\Profile\TicketController as ProfileTicketController;
 use App\Http\Controllers\Customer\Profile\ProfileController;
+use App\Http\Controllers\MySessionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -135,3 +137,7 @@ Route::prefix('userprofile')->namespace('Profile')->group(function () {
     // Route::post('my-tickets/dowload/{file_name}', [ProfileTicketController::class, 'store'])->name('customer.profile.my-tickets.store');
 
 });
+
+Route::get('session/get',[MySessionController::class, 'accessSessionData']);
+Route::get('session/set',[MySessionController::class, 'storeSessionData']);
+Route::get('session/remove',[MySessionController::class, 'deleteSessionData']);

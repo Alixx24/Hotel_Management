@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('admin-assets/jalalidatepicker/persian-datepicker.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
-    <x-app-layout>
+  
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Dashboard') }}
@@ -47,6 +48,20 @@
                     <label for="">Room Title</label>
                     <input class="form-control" type="text" name="title">
                 </div>
+
+                    <div class="form-group">
+                        <label for="">تاریخ انتشار</label>
+                        <input type="text" name="published_at" id="published_at" class="form-control form-control-sm d-none">
+                        <input type="text" id="published_at_view" class="form-control form-control-sm">
+                    </div>
+                    @error('published_at')
+                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
+                        <strong>
+                            {{ $message }}
+                        </strong>
+                    </span>
+                @enderror
+             
                 <div class="form-group"> 
                     <label for="description">description</label>
                     <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
@@ -157,15 +172,27 @@
                     <label for="">Upload image</label>
                     <input type="file" name="image">
                 </div>
+                
                 <div>
 
                     <button class="btn btn-primary" type="submit">Add Room</button>
                 </div>
             </div>
-
+            
         </form>
 
-    </x-app-layout>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="{{ asset('admin-assets/jalalidatepicker/persian-date.min.js') }}"></script>
+    <script src="{{ asset('admin-assets/jalalidatepicker/persian-datepicker.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#published_at_view').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                altField: '#published_at'
+            })
+        });
+    </script>
 </body>
 
 </html>
